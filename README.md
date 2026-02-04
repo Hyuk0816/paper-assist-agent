@@ -147,11 +147,14 @@ paper-assist status
 새 연구 프로젝트에서 PaperAssist를 사용하려면:
 
 ```bash
-# 현재 디렉토리에 프로젝트 구조 생성
+# 현재 디렉토리에 PaperAssist 폴더 생성
 paper-assist init
 
-# 또는 특정 경로에 생성
-paper-assist init --path /path/to/my-research
+# 프로젝트 이름 지정
+paper-assist init --name "논문 스터디"
+
+# 특정 경로에 생성
+paper-assist init --path /path/to/my-research --name "MyProject"
 ```
 
 ### 생성되는 디렉토리 구조
@@ -549,11 +552,14 @@ paper-assist uninstall --all
 #### init
 
 ```bash
-# 현재 디렉토리에 초기화
+# 현재 디렉토리에 PaperAssist 폴더 생성
 paper-assist init
 
-# 특정 경로에 초기화
-paper-assist init --path /path/to/project
+# 프로젝트 이름 지정
+paper-assist init --name "논문 스터디"
+
+# 특정 경로에 특정 이름으로 생성
+paper-assist init --path /path/to --name "MyProject"
 ```
 
 ---

@@ -147,11 +147,14 @@ paper-assist status
 To use PaperAssist in a new research project:
 
 ```bash
-# Create project structure in current directory
+# Create PaperAssist folder in current directory
 paper-assist init
 
-# Or create in a specific path
-paper-assist init --path /path/to/my-research
+# Specify project name
+paper-assist init --name "Paper Study"
+
+# Create in specific path with custom name
+paper-assist init --path /path/to/my-research --name "MyProject"
 ```
 
 ### Generated Directory Structure
@@ -549,11 +552,14 @@ paper-assist uninstall --all
 #### init
 
 ```bash
-# Initialize in current directory
+# Create PaperAssist folder in current directory
 paper-assist init
 
-# Initialize in specific path
-paper-assist init --path /path/to/project
+# Specify project name
+paper-assist init --name "Paper Study"
+
+# Create in specific path with custom name
+paper-assist init --path /path/to --name "MyProject"
 ```
 
 ---
