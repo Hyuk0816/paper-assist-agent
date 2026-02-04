@@ -1,13 +1,22 @@
 name: Publish to PyPI
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - 'pyproject.toml'  # 버전 변경 시에만 트리거
 
 jobs:
-  build:
-    name: Build distribution
+  build-and-publish:
+    name: Build and Publish to PyPI
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/paper-assist
+    permissions:
+      id-token: write  # OIDC 토큰 발급에 필요
+
     steps:
       - uses: actions/checkout@v4
 
@@ -23,29 +32,6 @@ jobs:
 
       - name: Build package
         run: python -m build
-
-      - name: Store the distribution packages
-        uses: actions/upload-artifact@v4
-        with:
-          name: python-package-distributions
-          path: dist/
-
-  publish-to-pypi:
-    name: Publish to PyPI
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/paper-assist
-    permissions:
-      id-token: write  # OIDC 토큰 발급에 필요
-
-    steps:
-      - name: Download distributions
-        uses: actions/download-artifact@v4
-        with:
-          name: python-package-distributions
-          path: dist/
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
