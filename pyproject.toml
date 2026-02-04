@@ -43,7 +43,6 @@ paper-assist = "paper_assist.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/Hyuk0816/paper-assist-agent"
-Repository = "https://github.com/Hyuk0816/paper-assist-agent"
 Issues = "https://github.com/Hyuk0816/paper-assist-agent/issues"
 
 [tool.hatch.build.targets.wheel]
