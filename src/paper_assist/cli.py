@@ -2,6 +2,14 @@
 PaperAssist CLI: Academic paper analysis command-line interface
 """
 
+import warnings
+import os
+
+# Suppress dependency warnings before importing
+os.environ["NO_ALBUMENTATIONS_UPDATE"] = "1"
+warnings.filterwarnings("ignore", category=UserWarning, module="albumentations")
+warnings.filterwarnings("ignore", category=UserWarning, module="pydantic")
+
 import click
 import sys
 from pathlib import Path
@@ -127,17 +135,25 @@ def status():
 
 
 @main.command()
-@click.option('--path', '-p', type=click.Path(), default='.', help='Project path')
-def init(path: str):
+@click.option('--path', '-p', type=click.Path(), default='.', help='Parent directory path')
+@click.option('--name', '-n', type=str, default='PaperAssist', help='Project folder name')
+def init(path: str, name: str):
     """Initialize PaperAssist directory structure in project.
 
-    Hybrid storage structure:
+    Creates a PaperAssist folder with hybrid storage structure:
     - GitHub: Text, logs, extracted results (version control)
     - Google Drive: Original PDFs (large file backup)
     """
-    project_path = Path(path).resolve()
+    parent_path = Path(path).resolve()
+    project_path = parent_path / name
 
-    click.echo("\n📁 Creating PaperAssist project structure...\n")
+    # Check if project already exists
+    if project_path.exists():
+        click.echo(f"\n⚠️  Directory already exists: {project_path}")
+        click.echo("Use --name to specify a different project name.")
+        return
+
+    click.echo(f"\n📁 Creating PaperAssist project: {project_path}\n")
 
     # Create required directories
     directories = [
@@ -240,8 +256,8 @@ def init(path: str):
     click.echo("=" * 50)
 
     click.echo("\n📂 Generated structure:")
-    click.echo("""
-PaperAssist/
+    click.echo(f"""
+{name}/
 ├── current_draft/                # 📍 GitHub
 │   ├── main.md
 │   ├── sections/
@@ -260,11 +276,12 @@ PaperAssist/
 │   └── decisions/
 """)
 
-    click.echo("\n📋 Usage:")
-    click.echo("  1. Put PDF papers to analyze in references/PDF/")
+    click.echo(f"\n📋 Usage:")
+    click.echo(f"  1. cd {project_path}")
+    click.echo("  2. Put PDF papers to analyze in references/PDF/")
     click.echo("     (Filename format: YYYYMMDD_Author_Title.pdf)")
-    click.echo("  2. Run '@paper-assist Please analyze this paper' in Claude Code")
-    click.echo("  3. Check analysis results in logs/analysis/")
+    click.echo("  3. Run '@paper-assist Please analyze this paper' in Claude Code")
+    click.echo("  4. Check analysis results in logs/analysis/")
 
     click.echo("\n📦 Required MCP servers:")
     click.echo("  - GitHub MCP: Auto commit/push logs")
