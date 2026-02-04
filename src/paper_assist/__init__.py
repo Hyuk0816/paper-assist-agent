@@ -5,7 +5,16 @@ Extract equations from PDF papers, assess citation value,
 and automatically generate research logs for Claude Code agent.
 """
 
-__version__ = "0.1.0"
+# Suppress dependency warnings before any imports
+import warnings
+import os
+os.environ["NO_ALBUMENTATIONS_UPDATE"] = "1"
+warnings.filterwarnings("ignore", category=UserWarning, message=".*Albumentations.*")
+warnings.filterwarnings("ignore", category=UserWarning, message=".*Pydantic.*")
+warnings.filterwarnings("ignore", category=UserWarning, module=".*albumentations.*")
+warnings.filterwarnings("ignore", category=UserWarning, module=".*pydantic.*")
+
+__version__ = "0.1.1"
 __author__ = "PaperAssist Team"
 
 from .extract_text import extract_text, extract_text_to_string

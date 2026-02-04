@@ -5,10 +5,12 @@ PaperAssist CLI: Academic paper analysis command-line interface
 import warnings
 import os
 
-# Suppress dependency warnings before importing
+# Suppress dependency warnings before any imports
 os.environ["NO_ALBUMENTATIONS_UPDATE"] = "1"
-warnings.filterwarnings("ignore", category=UserWarning, module="albumentations")
-warnings.filterwarnings("ignore", category=UserWarning, module="pydantic")
+warnings.filterwarnings("ignore", category=UserWarning, message=".*Albumentations.*")
+warnings.filterwarnings("ignore", category=UserWarning, message=".*Pydantic.*")
+warnings.filterwarnings("ignore", category=UserWarning, module=".*albumentations.*")
+warnings.filterwarnings("ignore", category=UserWarning, module=".*pydantic.*")
 
 import click
 import sys
