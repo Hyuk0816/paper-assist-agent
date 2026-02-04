@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "paper-assist"
-version = "0.1.0"
+version = "0.1.1"
 description = "Academic paper analysis tool - PDF equation extraction, citation value assessment, automatic research log generation"
 readme = "README.md"
 license = {text = "MIT"}
