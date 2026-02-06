@@ -1,6 +1,6 @@
 {
   "name": "paper-assist",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Academic paper analysis agent for Claude Code",
   "bin": {
     "paper-assist": "./bin/cli.js"
