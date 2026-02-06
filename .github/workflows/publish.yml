@@ -25,8 +25,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Configure npm registry
-        run: npm config set registry https://registry.npmjs.org/
+      - name: Update npm to latest
+        run: npm install -g npm@latest
+
+      - name: Show npm version
+        run: npm --version
 
       - name: Publish to npm
         run: npm publish --provenance --access public
