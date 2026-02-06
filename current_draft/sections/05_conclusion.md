@@ -1,3 +1,0 @@
-# Conclusion
-
-[Write conclusion here]

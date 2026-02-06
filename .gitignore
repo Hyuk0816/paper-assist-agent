@@ -1,30 +1,9 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual environments
-.venv/
-venv/
-ENV/
-env/
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
 
 # IDE
 .idea/
@@ -33,26 +12,9 @@ env/
 *.swo
 *~
 
-# Claude Code
-.claude/
-
 # OS
 .DS_Store
 Thumbs.db
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-.nox/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Type checking
-.mypy_cache/
-.pytype/
 
 # Logs
 *.log
@@ -61,6 +23,3 @@ htmlcov/
 *.local
 .env
 .env.local
-
-# Planning documents
-Scholar-Sync-Agent.md

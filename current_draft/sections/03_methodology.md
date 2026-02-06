@@ -1,3 +1,0 @@
-# Methodology
-
-[Write methodology here]
